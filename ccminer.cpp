@@ -99,6 +99,7 @@ bool opt_hwmonitor = false;
 const char *algo_names[] =
 {
 	"invalid",
+	"anime",
 	"bitcoin",
 	"blake",
 	"blakecoin",
@@ -240,6 +241,7 @@ static char const usage[] = "\
 Usage: " PROGRAM_NAME " [OPTIONS]\n\
 Options:\n\
   -a, --algo=ALGO specify the hash algorithm to use\n\
+                        anime       Animecoin\n\
 			bitcoin     Bitcoin\n\
 			blake       Blake 256 (SFR/NEOS)\n\
 			blakecoin   Fast Blake 256 (8 rounds)\n\
@@ -1617,6 +1619,7 @@ static void *miner_thread(void *userdata)
 		*    before hashrate is computed */
 		switch(opt_algo)
 		{
+			case ALGO_ANIME:
 			case ALGO_KECCAK:
 				minmax = 83000000ULL * max64time;
 				break;
@@ -1716,6 +1719,10 @@ static void *miner_thread(void *userdata)
 		/* scan nonces for a proof-of-work hash */
 		switch(opt_algo)
 		{
+		case ALGO_ANIME:
+			rc = scanhash_anime(thr_id, work.data, work.target,
+					    			    max_nonce, &hashes_done);
+			break;
 
 		case ALGO_KECCAK:
 			rc = scanhash_keccak256(thr_id, work.data, work.target,
@@ -1777,7 +1784,7 @@ static void *miner_thread(void *userdata)
 
 		case ALGO_VANILLA:
 			rc = scanhash_blake256(thr_id, work.data, work.target,
-														 max_nonce, &hashes_done, 8);
+								 max_nonce, &hashes_done, 8);
 			break;
 
 		case ALGO_BLAKECOIN:
@@ -1906,6 +1913,7 @@ static void *miner_thread(void *userdata)
 			double rate_factor;
 			switch(opt_algo)
 			{
+				case ALGO_ANIME:
 				case ALGO_JACKPOT:
 				case ALGO_QUARK:
 					// to stay comparable to other ccminer forks or pools
