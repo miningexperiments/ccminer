@@ -466,6 +466,8 @@
     <CudaCompile Include="quark\cuda_quark_keccak512.cu">
       <MaxRegCount>88</MaxRegCount>
     </CudaCompile>
+    <CudaCompile Include="quark\animecoin.cu"/>
+    </CudaCompile>
     <CudaCompile Include="quark\cuda_skein512.cu">
     </CudaCompile>
     <CudaCompile Include="quark\quarkcoin.cpp">
