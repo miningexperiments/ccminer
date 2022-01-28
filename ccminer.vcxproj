@@ -388,6 +388,7 @@
     <ClInclude Include="sph\sph_types.h" />
     <ClInclude Include="sph\sph_whirlpool.h" />
     <ClInclude Include="sph\sysendian.h" />
+    <ClInclude Include="quark\cuda_quark.h" />
     <ClInclude Include="x11\cuda_x11_simd512_func.cuh" />
   </ItemGroup>
   <ItemGroup>
@@ -467,6 +468,8 @@
       <MaxRegCount>88</MaxRegCount>
     </CudaCompile>
     <CudaCompile Include="quark\cuda_skein512.cu">
+    </CudaCompile>
+    <CudaCompile Include="quark\animecoin.cu"/>
     </CudaCompile>
     <CudaCompile Include="quark\quarkcoin.cpp">
     </CudaCompile>
