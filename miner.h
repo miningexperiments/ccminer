@@ -286,7 +286,7 @@ extern struct work_restart *work_restart;
 
 bool fulltest(const uint32_t *hash, const uint32_t *target);
 
-extern int scanhash_anime((int thr_id, uint32_t *pdata,
+extern int scanhash_anime(int thr_id, uint32_t *pdata,
 	uint32_t *ptarget, uint32_t max_nonce,
 	uint32_t *hashes_done);
 			  
